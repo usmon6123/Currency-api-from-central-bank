@@ -16,7 +16,6 @@ public class NewCurrencyApiDto {
     private String nbu_cell_price;
     private String date;
 
-    @Override
     public String toString() {
         return "{" + "\n" +
                 "\"title\" : \"" + title + '\"' + ",\n" +
