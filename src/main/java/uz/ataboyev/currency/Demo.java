@@ -13,7 +13,7 @@ import uz.ataboyev.currency.payload.NewCurrencyApiDto;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class demo {
+public class Demo {
     public static void main(String[] args) {
 
         //VALYUTANI TAFSILOTI BILAN OLIB KELADI
@@ -90,7 +90,7 @@ public class demo {
     //FAQAT VALYUTANI NARXINI OLIB KELADI
     public static String getCurrencyRate() {
         try {
-
+            String dollar = "";
             RestTemplate restTemplate = new RestTemplate();
             String url = "https://cbu.uz/uz/arkhiv-kursov-valyut/json/";
 
@@ -103,8 +103,8 @@ public class demo {
             mapper.setVisibility(VisibilityChecker.Std.defaultInstance().withFieldVisibility(JsonAutoDetect.Visibility.ANY));
             List<CurrencyApiDataDto> res = mapper.readValue(response.getBody(), new TypeReference<List<CurrencyApiDataDto>>() {
             }).stream().filter(c -> c.getCode().equals("840") && c.getCcy().equals("USD")).collect(Collectors.toList());
-
-            return res.get(0).getRate();
+            dollar = res.get(0).getRate();
+            return dollar;
 
         } catch (Exception e) {
 
